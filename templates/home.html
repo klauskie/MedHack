@@ -1,21 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link  href="/static/styles.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>TravelMeds</title>
+
+    <link rel="icon" href="http://v4-alpha.getbootstrap.com/favicon.ico">
+    <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://v4-alpha.getbootstrap.com/examples/cover/cover.css" rel="stylesheet">
+    <script src="http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 </head>
 <body>
 
-        <form action="/sintomas" method="POST">
-            <input type="number" name="age"> <br>
-            <input type="radio" name="gender" value="0">Male <br>
-            <input type="radio" name="gender" value="1">Female <br>
-            <input type="radio" name="gender" value="2">Other <br>
-            <input type="submit">
-        </form>
-    
+    <div class="wrapper">
+        <div>
+            <div>
+                <div class="inner cover container col-lg">
+                    <div class=" clearfix">
+                        <div class="inner">
+                            <h3 class="masthead-brand">TravelMeds </h3 >
+                        </div>
+                        
+
+                   
+
+                                <form action="/sintomas" method="POST">
+
+                            <div class="grid-container">
+                                    <div id="TxtRight" class="grid-item">Gender:</div>
+                                    <div class="grid-item">
+                                                      <label for="male">Male</label>
+                                                      <input type="radio" name="gender" value="0" checked>
+                                                      <label for="female">Female</label>
+                                                      <input type="radio" name="gender" value="1">
+                                                      <label for="female">Other sex</label>
+                                                      <input type="radio" name="gender" value="2">
+                                                       
+                                    </div>
+                                    <div id="TxtRight" class="grid-item">Age:</div>
+                                    <div class="grid-item">
+                                            <input type="number" name="age" min="1" max="100"> <br>
+                                    </div>
+                             </div> 
+                                  <br>
+                     <p>
+                                <input class="btn btn-lg btn-secondary"  type="submit" value ="Get Started">           
+                    </p>
+                </form>
+            </div>
+                </div>
+                </div>
+            </div>
+        </div>
 </body>
 </html>
-

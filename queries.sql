@@ -47,3 +47,25 @@ SELECT medicamentos.id, medicamentos.nombre FROM enf_med join medicamentos on en
 SELECT medicamentos.id, medicamentos.nombre
 FROM enf_med join medicamentos on enf_med.id_med = medicamentos.id
 where enf_med.id_enf = 5;
+
+insert into enfermedades(nombre) values
+('Deshidratacion'),
+('Embarazo');
+
+insert into sintomas(nombre) values
+('diarrea');
+
+insert into enf_sint(id_enf, id_sint) values
+(13,1),
+(13,2),
+(13,9);
+
+insert into enf_sint(id_enf, id_sint) values
+(14,1),
+(14,2),
+(14,4);
+
+select * from enfermedades join enf_sint on enfermedades.id = enf_sint.id_enf where enfermedades.id=13;
+
+select enfermedades.id, enfermedades.nombre from enfermedades join enf_sint on enfermedades.id = enf_sint.id_enf where enf_sint.id_sint = 1;
+
