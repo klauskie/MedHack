@@ -69,3 +69,6 @@ select * from enfermedades join enf_sint on enfermedades.id = enf_sint.id_enf wh
 
 select enfermedades.id, enfermedades.nombre from enfermedades join enf_sint on enfermedades.id = enf_sint.id_enf where enf_sint.id_sint = 1;
 
+insert into enf_med(id_med, id_enf) values
+(20, 12),
+(15, 12);
