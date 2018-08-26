@@ -4,28 +4,19 @@ import (
 	"fmt"
 	"log"
 	"medhackmty/def"
+	"medhackmty/medModelo"
+	"medhackmty/sintModelo"
 	"net/http"
 )
 
-const TOT_SYMP = 4
-
 type user struct {
-	Age     string
-	Sex     string
-	SympMap map[string]bool
-}
-
-type diagnosis struct {
-	D_Cabeza   bool
-	D_Muscular bool
-	Mareo      bool
-	Vomito     bool
+	Age string
+	Sex string
 }
 
 // GetInit : Get age and sex from user
 func GetInit(w http.ResponseWriter, r *http.Request) {
 	dud := user{}
-	dud.SympMap = make(map[string]bool)
 
 	if r.Method != "POST" {
 		http.Redirect(w, r, "/", 303)
@@ -35,7 +26,18 @@ func GetInit(w http.ResponseWriter, r *http.Request) {
 	dud.Age = r.FormValue("age")
 	dud.Sex = r.FormValue("gender")
 
-	err := def.TPL.ExecuteTemplate(w, "sint.html", dud)
+	lista, err := sintModelo.GetSintomas()
+	if err != nil {
+		log.Fatalln("Error, GetSintomas, ", err)
+	}
+
+	err = def.TPL.ExecuteTemplate(w, "sint.html", struct {
+		Usr user
+		Lst map[int]sintModelo.Sintoma
+	}{
+		dud,
+		lista,
+	})
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -50,10 +52,13 @@ func GetSymptoms(w http.ResponseWriter, r *http.Request) {
 	}
 
 	r.ParseForm()
-	symp_selected := r.Form["same"]
-	medicamento := diagnosticar(symp_selected)
+	sympSelected := r.Form["same"]
+	medicamento, err := diagnosticar(sympSelected)
+	if err != nil {
+		log.Fatalln(err)
+	}
 
-	err := def.TPL.ExecuteTemplate(w, "resultado.html", medicamento)
+	err = def.TPL.ExecuteTemplate(w, "resultado.html", medicamento)
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -61,20 +66,28 @@ func GetSymptoms(w http.ResponseWriter, r *http.Request) {
 }
 
 // Diagnosticar
-func diagnosticar(sintomas []string) string {
+func diagnosticar(sintomas []string) (map[int]medModelo.Medicamento, error) {
 	fmt.Println("dentro de diagnosticar...")
 	fmt.Println(sintomas)
 	for _, val := range sintomas {
 		fmt.Println(val)
-		if val == "D_Cabeza" {
-			return "Aspirina"
-		} else if val == "D_Muscular" {
-			return "Paracetamol"
-		} else if val == "Mareo" {
-			return "Algo para el mareo"
+		if val == "5" {
+			return medModelo.GetMed(5)
+		} else if val == "6" {
+			return medModelo.GetMed(6)
+		} else if val == "7" {
+			return medModelo.GetMed(7)
+		} else if val == "8" {
+			return medModelo.GetMed(8)
+		} else if val == "9" {
+			return medModelo.GetMed(9)
+		} else if val == "10" {
+			return medModelo.GetMed(10)
+		} else if val == "11" {
+			return medModelo.GetMed(11)
 		} else {
-			return "Algo para el vomito"
+			return medModelo.GetMed(12)
 		}
 	}
-	return "nil"
+	return nil, nil
 }

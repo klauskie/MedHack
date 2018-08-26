@@ -7,6 +7,9 @@
     <title>Resultado</title>
 </head>
 <body>
-    <h1> {{.}} </h1>
+    {{range .}}
+    <h1> {{.Nombre}} </h1> <br>
+    <p> {{.Descripcion}} </p>
+    {{end}}
 </body>
 </html>
