@@ -11,7 +11,7 @@ type Sintoma struct {
 
 func GetSintomas() (map[int]Sintoma, error) {
 	m := make(map[int]Sintoma)
-	rows, err := def.DB.Query("SELECT * FROM enfermedades")
+	rows, err := def.DB.Query("SELECT * FROM sintomas")
 	if err != nil {
 		return m, err
 	}

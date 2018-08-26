@@ -41,7 +41,27 @@
         
         </style>
 </head>
-<body>
+<body onload="func()">
+
+    <script>
+
+        function func(){
+            document.getElementById("sub").disabled = true;
+
+            var items = document.getElementsByName('same');
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].type == 'checkbox')
+                        items[i].checked = false;
+                }
+        }
+
+        function ableButton(){
+            document.getElementById("sub").disabled = false;
+        }
+
+        
+        
+    </script>
     <div class="contrainer-fluid">
         <h1 class="text-center">World Basic Medic</h1>
         <hr>
@@ -51,7 +71,7 @@
                         {{range .Lst}}
                         <div class="col-sm-offset-1 col-sm-10">
                             <span class="input-group-addon cosa">
-                                    <input type="checkbox" name="same" value="{{.Id}}"> {{.Nombre}}
+                                    <input type="checkbox" id="chb" name="same" value="{{.Id}}" onclick="ableButton()"> {{.Nombre}}
                             </span>
                         </div>
                         {{end}}
@@ -61,7 +81,7 @@
             <br><br>
             <div class="pull-right row">
                 <div class="col-sm-offset-1 col-sm-10">
-                        <input class="bttn" type="submit">
+                        <input id="sub" class="bttn" type="submit">
                 </div>  
             </div>
         </form>
