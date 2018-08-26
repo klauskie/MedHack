@@ -18,6 +18,7 @@
 
         div.card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 25px;
         }
 
     </style>
@@ -27,7 +28,7 @@
         <h1 class="text-center" style="color:white">TravelMeds</h1>
         <hr>
         <div class="row">
-            <h2 class="col-sm-offset-3" >Medicamentos recomentados: </h2> <br>
+            <h2 class="col-sm-offset-3" style="color:white" >Medicamentos recomentados: </h2> <br>
             <div class="col-sm-offset-3 col-sm-6 blanco card">
                 {{range .}}
                 <h2> {{.Nombre}} </h1> <hr>
